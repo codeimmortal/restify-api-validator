@@ -1,6 +1,8 @@
 restify-api-validation
 ==================
 
+```npm install restify-api-validation --save```
+
 This module will help you to make resitfy validation in the concept of AndrewKeig/express-validation.'
 
 Thanks for wonderful work down in `AndrewKeig/express-validation`
