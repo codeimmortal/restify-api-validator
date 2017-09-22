@@ -8,7 +8,7 @@ Thanks for wonderful work down in `AndrewKeig/express-validation`
 You can use this like this 
 
 #allValidation.js
-'use strict';
+```'use strict';
 var Joi = require('joi');
 
 
@@ -28,9 +28,9 @@ var validate = {
   }
 };
 module.exports.validate =validate;
-
+```
 #app.js
-
+```
 'use strict';
 
 const restify = require("restify");
@@ -77,3 +77,4 @@ server.use(function (err, req, res, next) {
 
 
 module.exports = server;
+```
