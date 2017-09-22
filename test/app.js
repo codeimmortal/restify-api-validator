@@ -1,17 +1,28 @@
 'use strict';
 
-var express = require('express');
+const restify = require("restify");
+const restifyBodyParser = require('restify-plugins').bodyParser;
+const restifyacceptParser = require('restify-plugins').acceptParser;
+const restifyqueryParser = require('restify-plugins').queryParser;
+const restifyfullResponse = require('restify-plugins').fullResponse;
 var validate = require('../lib/index');
 var http = require('http');
 var validation = require('./validation');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var app = express();
+global.httpErrors = restify.errors;
 
-app.use(bodyParser.json());
-app.use(cookieParser());
+global.server = restify.createServer();
+server.use(restifyBodyParser());
+server.use(restifyacceptParser(server.acceptable));
+server.use(restifyqueryParser({
+    mapParams: false
+}));
+server.use(restifyfullResponse());
 
-app.set('port', 3000);
+
+server.listen(3000, function () {
+    "use strict";
+    console.log("server is up at 3000");
+});
 
 // generates a response function sending back to user the specified req[key]
 function respondWith (key) {
@@ -24,29 +35,29 @@ function respond200 (req, res) {
   res.json(200);
 }
 
-app.post('/login', validate(validation.login), respond200);
-app.get('/user', validate(validation.user.get), respond200);
-app.get('/search', validate(validation.search), respond200);
-app.put('/user/:id', validate(validation.user.put), respond200);
-app.post('/register', validate(validation.register.post), respond200);
-app.post('/options', validate(validation.options), respond200);
-app.get('/account/:id', validate(validation.account), respondWith('params'));
-app.post('/defaults', validate(validation.defaults), respondWith('body'));
+server.post('/login', validate(validation.login), respond200);
+server.get('/user', validate(validation.user.get), respond200);
+server.get('/search', validate(validation.search), respond200);
+server.put('/user/:id', validate(validation.user.put), respond200);
+server.post('/register', validate(validation.register.post), respond200);
+server.post('/options', validate(validation.options), respond200);
+server.get('/account/:id', validate(validation.account), respondWith('params'));
+server.post('/defaults', validate(validation.defaults), respondWith('body'));
 
-app.get('/parsing/params/:id?', validate(validation.parsing.params), respondWith('params'));
-app.get('/parsing/query', validate(validation.parsing.query), respondWith('query'));
-app.post('/parsing/body', validate(validation.parsing.body), respondWith('body'));
-app.get('/parsing/headers', validate(validation.parsing.headers), respondWith('headers'));
-app.get('/parsing/cookies', validate(validation.parsing.cookies), respondWith('cookies'));
+server.get('/parsing/params/:id?', validate(validation.parsing.params), respondWith('params'));
+server.get('/parsing/query', validate(validation.parsing.query), respondWith('query'));
+server.post('/parsing/body', validate(validation.parsing.body), respondWith('body'));
+server.get('/parsing/headers', validate(validation.parsing.headers), respondWith('headers'));
+server.get('/parsing/cookies', validate(validation.parsing.cookies), respondWith('cookies'));
 
-app.post('/logout', validate(validation.logout), respond200);
-app.post('/array', validate(validation.array), respond200);
-app.post('/context/:id', validate(validation.context), respond200);
+server.post('/logout', validate(validation.logout), respond200);
+server.post('/array', validate(validation.array), respond200);
+server.post('/context/:id', validate(validation.context), respond200);
 
 // default errorhandler for express-validation
-app.use(function (err, req, res, next) {
+server.use(function (err, req, res, next) {
   res.status(400).json(err);
 });
 
-http.createServer(app);
-module.exports = app;
+
+module.exports = server;
