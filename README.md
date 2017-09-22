@@ -10,8 +10,8 @@ You can use this like this
 #allValidation.js
 ```'use strict';
 var Joi = require('joi');
-
-
+ 
+ 
 var validate = {
   login :{
     options: { flatten: true },
@@ -20,13 +20,13 @@ var validate = {
     password: Joi.string().required().min(6).max(10)
     }
   },
-  register = {
+  register : {
   options: { flatten: true },
   body: {
     email: Joi.string().required().email(),
     password: Joi.string().required().min(6).max(10)
   }
-};
+}};
 module.exports.validate =validate;
 ```
 #app.js
@@ -40,7 +40,7 @@ const restifyqueryParser = require('restify-plugins').queryParser;
 const restifyfullResponse = require('restify-plugins').fullResponse;
 var validate = require('restify-api-validation');
 var http = require('http');
-var validation = require('./allValidation');
+var validation = require('./allValidator').validate;
 global.httpErrors = restify.errors;
 
 global.server = restify.createServer();
@@ -67,7 +67,6 @@ function respondWith (key) {
 function respond200 (req, res) {
   res.json(200);
 }
-
 server.post('/login', validate(validation.login), respond200);
 server.post('/register', validate(validation.register), respond200);
 // default errorhandler for express-validation
