@@ -1,6 +1,6 @@
 {
   "name": "restify-api-validation",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Himanshu sharma <himmsharma.99@gmail.com>",
   "description": "This node module is develop for restify api validation .",
   "contributors": [
@@ -40,7 +40,9 @@
     "validate",
     "api-validator",
     "api",
-    "json"
+    "json",
+    "restify-validator",
+    "restify-validation"
   ],
   "bugs": {
     "url": "https://github.com/awesomehimanshu/restify-validation/issues"

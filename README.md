@@ -7,7 +7,7 @@ This module will help you to make resitfy validation in the concept of AndrewKei
 
 Thanks for wonderful work down in `AndrewKeig/express-validation`
 
-You can contribute to repo and also 
+You can contribute to repository .
 You can use this like this 
 
 **file**: [`allValidation.js`](allValidation.js)
@@ -54,6 +54,11 @@ server.use(restifyqueryParser({
 }));
 server.use(restifyfullResponse());
 
+server.on('restifyError', function(req, res, err, next) {
+    // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
+   res.status(err.status);
+   res.json(err.errors); //res.send(err);
+  });
 
 server.listen(3000, function () {
     "use strict";
@@ -80,6 +85,14 @@ server.use(function (err, req, res, next) {
 
 module.exports = server;
 ```
+#Make sure to use thsi for error catching , tested in restify 5
+```
+server.on('restifyError', function(req, res, err, next) {
+    // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
+   res.status(err.status);
+   res.json(err.errors); //res.send(err);
+  });
+```
 
 For more complex structure like this you can do validation 
 
@@ -101,12 +114,22 @@ if you have json structure like this
 
 then you can make validation json in the allValidation.js file like this.
 info is the object like login and register in allValidation.js file . allValidation.js file is above.
+ 
+ ``` 
+var nickname = Joi.object().keys({
+  nickname: Joi.string().required()
+});
 
+ var firstname = Joi.object().keys({
+  firstname: Joi.string().required()
+});
+```
+Whilw working with header reminder to write in `lower case` letter.
 ```
 info : {
   options: { flatten: true },
    headers: {
-      Authorization: Joi.string().required() 
+      authorization: Joi.string().required() 
    },
   body: {
     email: Joi.string().required().email(),
@@ -115,4 +138,5 @@ info : {
                 name: Joi.array().items(firstname).required()
                 }).required()
   }
-}```
+}
+```
