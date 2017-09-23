@@ -85,8 +85,7 @@ For more complex staructure like this you can do validation
 
 
 if you have json structure like this 
-```
-{
+```{
 	"email":"himmsharma.99@gmail.com",
 	"password":"12345",
 	"userinfo":[
