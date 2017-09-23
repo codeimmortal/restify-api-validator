@@ -7,7 +7,7 @@ This module will help you to make resitfy validation in the concept of AndrewKei
 
 Thanks for wonderful work down in `AndrewKeig/express-validation`
 
-You can contribute to repository .
+Contributition to repository are most welcome.
 You can use this like this 
 
 **file**: [`allValidation.js`](allValidation.js)
