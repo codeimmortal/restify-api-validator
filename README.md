@@ -101,8 +101,7 @@ if you have json structure like this
 
 then you can make validation json in the allValidation.js file like this.
 info is the object like login and register in allValidation.js file . allValidation.js file is above.
-```
-info : {
+```info : {
   options: { flatten: true },
    headers: {
       Authorization: Joi.string().required() 
