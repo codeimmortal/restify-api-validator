@@ -81,7 +81,7 @@ server.use(function (err, req, res, next) {
 module.exports = server;
 ```
 
-For more complex staructure like this you can do validation 
+For more complex structure like this you can do validation 
 
 
 if you have json structure like this 
