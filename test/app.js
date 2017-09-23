@@ -18,7 +18,12 @@ server.use(restifyqueryParser({
 }));
 server.use(restifyfullResponse());
 
-
+server.on('restifyError', function(req, res, err, next) {
+    // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
+   res.status(err.status);
+   res.json(err.errors); //res.send(err);
+  });
+  
 server.listen(3000, function () {
     "use strict";
     console.log("server is up at 3000");
