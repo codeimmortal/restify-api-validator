@@ -7,9 +7,10 @@ This module will help you to make resitfy validation in the concept of AndrewKei
 
 Thanks for wonderful work down in `AndrewKeig/express-validation`
 
+You can contribute to repo and also 
 You can use this like this 
 
-#allValidation.js
+**file**: [`allValidation.js`](allValidation.js)
 ```'use strict';
 var Joi = require('joi');
  
@@ -31,7 +32,7 @@ var validate = {
 }};
 module.exports.validate =validate;
 ```
-#app.js
+**file**: [`app.js`](app.js)
 ```
 'use strict';
 
@@ -79,3 +80,38 @@ server.use(function (err, req, res, next) {
 
 module.exports = server;
 ```
+
+For more complex staructure like this you can do validation 
+
+
+if you have json structure like this 
+```
+{
+	"email":"himmsharma.99@gmail.com",
+	"password":"12345",
+	"userinfo":[
+		{ "nickname":"himanshu"},
+		{"nickname":"himm"}],
+	"complexinfo":{
+		"name":[
+			{"firstname":"ram"},
+			{"firstname":"shyam"}]
+	}	
+}```
+
+then you can make validation json in the allValidation.js file like this.
+info is the object like login and register in allValidation.js file . allValidation.js file is above.
+```
+info : {
+  options: { flatten: true },
+   headers: {
+      Authorization: Joi.string().required() 
+   },
+  body: {
+    email: Joi.string().required().email(),
+    userinfo :Joi.array().items(nickname).required(),
+    complexinfo :Joi.object().keys({
+                name: Joi.array().items(firstname).required()
+                }).required()
+  }
+}```
