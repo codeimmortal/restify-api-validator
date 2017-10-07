@@ -7,7 +7,7 @@ This module will help you to make resitfy validation in the concept of AndrewKei
 
 Thanks for wonderful work down in `AndrewKeig/express-validation`
 
-Contributition to repository are most welcome.
+Contributition and enhancement to repository are most welcome.
 You can use this like this 
 
 **file**: [`allValidation.js`](allValidation.js)
@@ -37,22 +37,18 @@ module.exports.validate =validate;
 'use strict';
 
 const restify = require("restify");
-const restifyBodyParser = require('restify-plugins').bodyParser;
-const restifyacceptParser = require('restify-plugins').acceptParser;
-const restifyqueryParser = require('restify-plugins').queryParser;
-const restifyfullResponse = require('restify-plugins').fullResponse;
 var validate = require('restify-api-validation');
 var http = require('http');
 var validation = require('./allValidator').validate;
 global.httpErrors = restify.errors;
 
 global.server = restify.createServer();
-server.use(restifyBodyParser());
-server.use(restifyacceptParser(server.acceptable));
-server.use(restifyqueryParser({
+server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.acceptParser(server.acceptable));
+server.use(restify.plugins.queryParser({
     mapParams: false
 }));
-server.use(restifyfullResponse());
+server.use(restify.plugins.fullResponse());
 
 server.on('restifyError', function(req, res, err, next) {
     // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
@@ -127,7 +123,7 @@ var nickname = Joi.object().keys({
 Whilw working with header reminder to write in `lower case` letter.
 ```
 info : {
-  options: { flatten: true },
+  options: { flatten: true ,contextRequest : true},
    headers: {
       authorization: Joi.string().required() 
    },

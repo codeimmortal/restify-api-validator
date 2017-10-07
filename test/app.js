@@ -1,29 +1,33 @@
 'use strict';
 
 const restify = require("restify");
-const restifyBodyParser = require('restify-plugins').bodyParser;
-const restifyacceptParser = require('restify-plugins').acceptParser;
-const restifyqueryParser = require('restify-plugins').queryParser;
-const restifyfullResponse = require('restify-plugins').fullResponse;
 var validate = require('../lib/index');
 var http = require('http');
 var validation = require('./validation');
 global.httpErrors = restify.errors;
 
 global.server = restify.createServer();
-server.use(restifyBodyParser());
-server.use(restifyacceptParser(server.acceptable));
-server.use(restifyqueryParser({
+server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.acceptParser(server.acceptable));
+server.use(restify.plugins.queryParser({
     mapParams: false
 }));
-server.use(restifyfullResponse());
+server.use(restify.plugins.fullResponse());
 
-server.on('restifyError', function(req, res, err, next) {
+server.on('NotFound', function(req, res, err, next) {
+    // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
+    console.log("server is up at 3000");
+    res.status(err.status);
+   res.json(err.errors); //res.send(err);
+  });
+
+
+  server.on('restifyError', function(req, res, err, next) {
     // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
    res.status(err.status);
    res.json(err.errors); //res.send(err);
   });
-  
+
 server.listen(3000, function () {
     "use strict";
     console.log("server is up at 3000");
