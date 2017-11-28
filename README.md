@@ -3,16 +3,14 @@ restify-api-validation
 
 ```npm install restify-api-validation --save```
 
-Thanks for wonderful work down in `AndrewKeig/express-validation`
-
 Contributition and enhancement to repository are most welcome.
-You can use this like this 
+You can use this like this
 
 **file**: [`allValidation.js`](allValidation.js)
 ```'use strict';
 var Joi = require('joi');
- 
- 
+
+
 var validate = {
   login :{
     options: { flatten: true },
@@ -88,11 +86,13 @@ server.on('restifyError', function(req, res, err, next) {
   });
 ```
 
-For more complex structure like this you can do validation 
+**For more complex structure like this you can do validation**
 
 
-if you have json structure like this 
-```{
+If you have json structure like this
+
+```
+{
 	"email":"himmsharma.99@gmail.com",
 	"password":"12345",
 	"userinfo":[
@@ -102,14 +102,14 @@ if you have json structure like this
 		"name":[
 			{"firstname":"ram"},
 			{"firstname":"shyam"}]
-	}	
+	}
 }
 ```
 
 then you can make validation json in the allValidation.js file like this.
 info is the object like login and register in allValidation.js file . allValidation.js file is above.
- 
- ``` 
+
+ ```
 var nickname = Joi.object().keys({
   nickname: Joi.string().required()
 });
@@ -118,12 +118,14 @@ var nickname = Joi.object().keys({
   firstname: Joi.string().required()
 });
 ```
-Whilw working with header reminder to write in `lower case` letter.
+
+While working with header reminder to write in `lower case` letter.
+
 ```
 info : {
   options: { flatten: true ,contextRequest : true},
    headers: {
-      authorization: Joi.string().required() 
+      authorization: Joi.string().required()
    },
   body: {
     email: Joi.string().required().email(),

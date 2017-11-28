@@ -1,6 +1,6 @@
 {
   "name": "restify-api-validation",
-  "version": "1.1.1",
+  "version": "1.4.0",
   "author": "Himanshu sharma <himmsharma.99@gmail.com>",
   "description": "This node module is develop for restify api validation .",
   "contributors": [
