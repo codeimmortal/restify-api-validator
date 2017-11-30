@@ -7,7 +7,8 @@ Contributition and enhancement to repository are most welcome.
 You can use this like this
 
 **file**: [`allValidation.js`](allValidation.js)
-```'use strict';
+```javascript
+'use strict';
 var Joi = require('joi');
 
 
@@ -29,7 +30,7 @@ var validate = {
 module.exports.validate =validate;
 ```
 **file**: [`app.js`](app.js)
-```
+```javascript
 'use strict';
 
 const restify = require("restify");
@@ -77,8 +78,8 @@ server.use(function (err, req, res, next) {
 
 module.exports = server;
 ```
-#Make sure to use thsi for error catching , tested in restify 5
-```
+#Make sure to use this for error catching , tested in restify 5
+```javascript
 server.on('restifyError', function(req, res, err, next) {
     // handle all errors passed to next here, whether it's Error or NotFoundError or anything that is an instance of Error
    res.status(err.status);
@@ -91,7 +92,7 @@ server.on('restifyError', function(req, res, err, next) {
 
 If you have json structure like this
 
-```
+```javascript
 {
 	"email":"himmsharma.99@gmail.com",
 	"password":"12345",
@@ -109,7 +110,7 @@ If you have json structure like this
 then you can make validation json in the allValidation.js file like this.
 info is the object like login and register in allValidation.js file . allValidation.js file is above.
 
- ```
+```javascript
 var nickname = Joi.object().keys({
   nickname: Joi.string().required()
 });
@@ -121,7 +122,7 @@ var nickname = Joi.object().keys({
 
 While working with header reminder to write in `lower case` letter.
 
-```
+```javascript
 info : {
   options: { flatten: true ,contextRequest : true},
    headers: {
