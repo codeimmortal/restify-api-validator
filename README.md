@@ -35,7 +35,6 @@ module.exports.validate =validate;
 
 const restify = require("restify");
 var validate = require('restify-api-validation');
-var http = require('http');
 var validation = require('./allValidator').validate;
 global.httpErrors = restify.errors;
 
