@@ -4,6 +4,12 @@ restify-api-validation
 ```npm install restify-api-validation --save```
 
 Contributition and enhancement to repository are most welcome.
+
+Also you can check examples in the test folder how to write validation and see the below details how to use it. Happy coding.
+
+Also let me know if you want enhancement . Tested with latest node.js version 10.15 + 
+
+
 You can use this like this
 
 **file**: [`allValidation.js`](allValidation.js)
