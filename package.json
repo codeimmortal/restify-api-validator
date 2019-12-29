@@ -1,6 +1,6 @@
 {
   "name": "restify-api-validation",
-  "version": "1.4.9",
+  "version": "1.4.11",
   "author": "Himanshu sharma <himmsharma.99@gmail.com>",
   "description": "This node module is develop for restify api validation .",
   "contributors": [
@@ -20,13 +20,13 @@
     "joi": "*"
   },
   "devDependencies": {
-    "eslint": "^5.14.1",
-    "joi": "^13.6.0",
-    "mocha": "^5.2.0",
-    "restify": "^6.4.0",
+    "eslint": "^6.8.0",
+    "joi": "^14.3.1",
+    "mocha": "^6.2.2",
+    "restify": "^8.5.1",
     "restify-plugins": "^1.6.0",
-    "should": "^9.0.2",
-    "supertest": "^3.1.0"
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   },
   "license": "MIT",
   "scripts": {
